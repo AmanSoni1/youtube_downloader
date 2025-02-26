@@ -4,7 +4,7 @@ from pytubefix import YouTube
 def download_video(url):
     try:
         yt = YouTube(url)
-        stream = yt.streams.get_highest_resolution()
+        stream = yt.streams.filter(progressive=True, file_extension="mp4").first()
         filename = stream.download()
         return filename
     except Exception as e:
